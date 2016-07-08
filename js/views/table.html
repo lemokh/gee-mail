@@ -1,0 +1,14 @@
+<table style="width:100%" border="1">
+  <tbody>
+      <tr id="tablehead">
+        <th>SENDER</th>
+        <th>SUBJECT</th>
+        <th>DATE</th>
+      </tr>    
+      <tr ng-repeat="message in messages" id="tablebody">
+        <td id="sender">{{message.sender}}</td>
+        <td><a href="#/open/{{$index}}"> {{message.subject}}</a></td>
+        <td id="date">{{message.date}}</td>
+      </tr>
+  </tbody>
+</table>

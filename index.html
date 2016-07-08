@@ -1,18 +1,47 @@
-<html>
-	<head>
-		<script src="js/mail-generator.js"></script>
-		<link href="css/style.css" rel="stylesheet" media="screen">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0"\>
+    <title>GeeMail App</title>
+    
+    <link href="css/style.css" rel="stylesheet" media="screen">
+    <!-- Vendor libraries -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0/angular.min.js"></script>
+    <script src="/js/vendors/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+    
+    <!-- Application Files -->
+    <script src="js/mail-generator.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/TableCtrl.js"></script>
+    <script src="js/controllers/OpenCtrl.js"></script>
+
     <script>
       window.onload = function(){
-        // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
-        // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        /*here is comment*/
+        // ALL JAVASCRIPT CODE GOES HERE
+        
+        function startEmail() {
+          window.geemails.push(getNewMessage());
+          
+          $('button').trigger('click');
+        }
+         startEmail();
+         setInterval(startEmail, 5000);
       };
     </script>
-	</head>
-	<body>
-		<div class="container" id="main">
-			Build Me!
-		</div>
-	</body>
+    
+	<body ng-app="GeemailApp" ng-controller="TableCtrl" ng-controller="OpenCtrl">
+		<h1>
+		  Total Mail: {{messages.length}}
+		</h1>
+		<header class="header" role="banner">
+		  <div id="main">
+			  GeeMail App
+		  </div>
+		</header>
+    
+    <div ng-view></div>
+    <button ng-click="checkMail()"></button>
+  </body>
 </html>
